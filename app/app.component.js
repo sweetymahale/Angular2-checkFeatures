@@ -11,14 +11,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var AppComponent = (function () {
     function AppComponent() {
-        this.name = 'Angular';
+        this.changeStyle = false;
     }
-    AppComponent.prototype.changeColor = function () {
+    AppComponent.prototype.getStyle = function () {
+        if (this.changeStyle) {
+            return "yellow";
+        }
+        else {
+            return "";
+        }
     };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: '<button (click)=', changeColor: function () { }, '>{{name}}</button>': 
+            template: "<div>\n              <div [ngClass]=\"{'my-class': changeStyle }\"> On button click style will be changed </div>\n              <button (click)=\"changeStyle = !changeStyle;\">Change Color</button>\n            \n              </div>",
+            styles: [
+                "\n  .my-class {\n    background-color: yellow;\n  }\n  "
+            ]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

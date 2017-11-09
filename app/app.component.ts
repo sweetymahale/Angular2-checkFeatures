@@ -2,15 +2,30 @@ import { Component } from '@angular/core';
 
 @Component({
   selector : 'my-app',
-  template : '<button (click)='changeColor()'>{{name}}</button>'
+  template : `<div>
+              <div [ngClass]="{'my-class': changeStyle }"> On button click style will be changed </div>
+              <button (click)="changeStyle = !changeStyle;">Change Color</button>
+            
+              </div>`,
+  styles: [
+  `
+  .my-class {
+    background-color: yellow;
+  }
+  `
+  ]
 })
 
 export class AppComponent {
-  constructor(){
-  this.name = 'Angular'
-  }
-  changeColor(){
-  
+  changeStyle = false;
 
-  }
+  constructor() {
+ }
+ getStyle() {
+     if(this.changeStyle) {
+       return "yellow";
+     } else {
+       return "";
+     }
+   }
 }
